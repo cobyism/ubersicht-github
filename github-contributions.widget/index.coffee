@@ -1,7 +1,7 @@
 # Replace with your username here.
 username = "cobyism"
 
-command: "curl -s https://github.com/users/#{username}/contributions_calendar_data"
+command: "curl -s https://github.com/users/#{username}/contributions"
 
 refreshFrequency: 3600000 # 1 hour
 
