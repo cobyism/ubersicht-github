@@ -1,7 +1,7 @@
 # Replace with your username here.
-username = "Balletie"
+username: "Balletie"
 
-command: "curl -s https://github.com/users/#{username}/contributions"
+command: "curl -s https://github.com/users/#{this.username}/contributions"
 
 refreshFrequency: 3600000 # 1 hour
 
@@ -37,7 +37,7 @@ h3\n
 
 render: (output) -> """
 <div class="container">
-	<h3>Contributions</h3>
+	<h3>GitHub Contributions by #{this.username}</h3>
 	<div class="calendar-graph"></div>
 </div>
 """
