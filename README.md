@@ -4,7 +4,7 @@ This is a GitHub contributions graph widget for [Übersicht](http://tracesof.net
 
 ## Screenshot
 
-![GitHub contributions graph widget for übersicht](http://f.cl.ly/items/2Z3o1d2V2b0D2I1c0K1d/screenshot.png)
+![GitHub contributions graph widget for übersicht](./screenshot.png)
 
 ## Download
 
