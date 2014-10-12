@@ -1,7 +1,7 @@
 # Replace with your username here.
 username = "Balletie"
 
-command: "curl -s https://github.com/#{username}/"
+command: "curl -s https://github.com/users/#{username}/contributions"
 
 refreshFrequency: 3600000 # 1 hour
 
@@ -46,5 +46,4 @@ update: (output, domEl) ->
 	calendar = $($.parseHTML(output))
 	$(domEl)
 		.find('.calendar-graph')
-		.html(calendar
-			.find('#contributions-calendar > .calendar-graph > svg'))
+		.html(calendar)
