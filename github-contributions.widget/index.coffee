@@ -1,7 +1,8 @@
 # Replace with your username here.
-username: "Balletie"
+uname = "Balletie"
+username: uname
 
-command: "curl -s https://github.com/users/#{this.username}/contributions"
+command: "curl -s https://github.com/users/#{uname}/contributions"
 
 refreshFrequency: 3600000 # 1 hour
 
