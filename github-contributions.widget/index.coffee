@@ -1,85 +1,50 @@
 # Replace with your username here.
-username = "cobyism"
+uname = "Balletie"
+username: uname
 
-command: "curl -s https://github.com/users/#{username}/contributions_calendar_data"
+command: "curl -s https://github.com/users/#{uname}/contributions"
 
 refreshFrequency: 3600000 # 1 hour
 
 style: """
-  left: 10px
-  bottom: 10px
+position: absolute\n
+bottom: 10px\n
+left: 10px\n
 
-  border-radius 5px
-  background rgba(#000, .5)
+.container\n
+	opacity:0.8\n
+	font: 13px/1.4 Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"\n
+h3\n
+	border: solid #d8d8d8 1px\n
+	background-color: #f5f5f5\n
+	border-radius: 3px 3px 0 0\n
+	border-bottom:0\n
+	margin:0px\n
+	padding: 9px 10px 10px\n
 
-  font-family Helvetica Neue
-  font-size 13px
-  font-weight bold
-  text-shadow 0 1px 0px rgba(#000, .5)
-  color: #fff
-
-  .container
-    margin 8px 12px 12px
-
-  .widget-header
-    margin-bottom 5px
-
-  .username
-    float right
-
-  .github-contributions
-    position relative
-
-  .contribution
-    position absolute
+.calendar-graph\n
+	background-color: white\n
+	border: solid #d8d8d8 1px\n
+	border-radius: 0 0 3px 3px\n
+	box-sizing: border-box\n
+	color: rgb(102, 102, 102)\n
+	display: block\n
+	font-size: 10px\n
+	font-style: normal\n
+	font-variant: normal\n
+	font-weight: normal\n
+	line-height: 18.2000007629395px\n
 """
 
-render: -> """
-  <div class="container">
-    <div class="widget-header">
-      <span class="widget-title">GitHub Contributions</span>
-      <span class="username">@#{this.command.split('/')[4]}</span>
-    </div>
-    <div class="github-contributions"></div>
-  </div>
+render: (output) -> """
+<div class="container">
+	<h3>GitHub Contributions by #{this.username}</h3>
+	<div class="calendar-graph"></div>
+</div>
 """
 
-update: (output, widget) ->
-
-  squareSize = 11
-  squareSpacing = 2
-  containerWidth = (53 * (squareSize + squareSpacing)) - squareSpacing
-  containerHeight = (7 * (squareSize + squareSpacing)) - squareSpacing
-
-  $(widget).find(".github-contributions")
-    .css 'width', containerWidth
-    .css 'height', containerHeight
-
-  data  = JSON.parse(output)
-
-  days = $.map data, (day) -> day[1]
-  maxContribution = Math.max.apply(Math, days)
-
-  squareTopPos = (i) ->
-    offset = i % 7
-    "#{offset * (squareSize + squareSpacing)}px"
-
-  squareLeftPos = (i) ->
-    offset = Math.floor(i / 7)
-    "#{offset * (squareSize + squareSpacing)}px"
-
-  squareColour = (count, max) ->
-    switch
-      when count > 8 then "rgba(30, 104, 35, .8)"
-      when count > 5 then "rgba(68, 163, 64, .8)"
-      when count > 2 then "rgba(140, 198, 101, .8)"
-      when count > 0 then "rgba(214, 230, 133, .8)"
-      else "rgba(238, 238, 238, .5)"
-
-  squareStyle = (i, count) ->
-    "left: #{squareLeftPos(i)}; top: #{squareTopPos(i)}; background-color: #{squareColour(count, maxContribution)}; width: #{squareSize}px; height: #{squareSize}px;"
-
-  $(widget).find(".github-contributions").empty()
-
-  $.each data, (index, day) ->
-    $(widget).find(".github-contributions").append("<span class='contribution' style='#{squareStyle(index, day[1])}'></span>")
+update: (output, domEl) ->
+	calendar = $($.parseHTML(output))
+	$(domEl)
+		.find('.calendar-graph')
+		.html(calendar)
