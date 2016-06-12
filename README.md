@@ -1,3 +1,5 @@
+**DEPRECATED**: Note that this widget is [no longer actively maintained](https://github.com/cobyism/ubersicht-github/pull/6#issuecomment-225431603). For a similar widget, you should probably check out [eanplatter/minimal-github-widgit](https://github.com/eanplatter/minimal-github-widgit) instead.
+
 # GitHub Contributions Widget
 
 This is a GitHub contributions graph widget for [Übersicht](http://tracesof.net/uebersicht/).
